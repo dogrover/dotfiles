@@ -5,7 +5,10 @@
 "    - git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 "    - create a symlink from ~/.vimrc to this file
 "    - For Windows, use "mklink /H _vimrc [path.to.this.file]"
+"    - Uncomment the "consolas-powerline-vim" bundle
 "    - start vim and run :BundleInstall
+"    - Install the four fonts from the above bundle dir
+"    - Delete that bundle dir and comment it out below
 
 set nocompatible               " Not vi
 filetype off                   " Required for Vundle
@@ -13,7 +16,7 @@ filetype off                   " Required for Vundle
 " OS-specific settings. Keep actual changes to a minimum. Set variables
 " instead, and use them later.
 if has('win32') || has('win64')
-	set guifont=Bitstream_Vera_Sans_Mono:h8:cANSI
+	set guifont=Consolas_for_Powerline_FixedD:h10:cANSI
 	set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
     let $BACKUPDIR=$HOME . "/Documents/VimBackup//,."
 endif
@@ -30,6 +33,7 @@ call vundle#rc()
 " Bundles go here. Start with Vundle itself.
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
+" Bundle 'eugeneching/consolas-powerline-vim'		" Needed only at install
 Bundle 'gmarik/vundle'
 Bundle 'joedicastro/vim-markdown-extra-preview'
 Bundle 'kien/ctrlp.vim'
@@ -195,12 +199,18 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>ep :e $HOME/.pentadactlyrc<CR>
 
-" Gundo
-nmap <silent> <C-F5> :GundoToggle<CR>
+" Bundle settings
+" ---------------
 
 " Ctrl-P 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
+
+" Gundo
+nmap <silent> <C-F5> :GundoToggle<CR>
+
+" Powerline
+let g:Powerline_symbols="fancy"
 
