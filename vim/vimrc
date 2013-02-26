@@ -30,6 +30,7 @@ call vundle#rc()
 " Bundles go here. Start with Vundle itself.
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'eugeneching/consolas-powerline-vim'
 Bundle 'gmarik/vundle'
 Bundle 'joedicastro/vim-markdown-extra-preview'
 Bundle 'kien/ctrlp.vim'
@@ -195,12 +196,18 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>ep :e $HOME/.pentadactlyrc<CR>
 
-" Gundo
-nmap <silent> <C-F5> :GundoToggle<CR>
+" Settings for bundles
+" --------------------
 
 " Ctrl-P 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
+
+" Gundo
+nmap <silent> <C-F5> :GundoToggle<CR>
+
+" Powerline
+let g:Powerline_symbols="fancy"
 
