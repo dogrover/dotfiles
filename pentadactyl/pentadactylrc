@@ -1,0 +1,22 @@
+"hg6830
+
+" Load all plugins
+loadplugins '\.(js|penta)$'
+
+" Core settings
+set colorscheme=zenburn
+set defsearch=duckduckgo
+set passkeys=mail.google.com:ujkopnclerafz}{#/`~?<CR><Tab>,gi,gc,gl,ga
+
+" Buftabs settings
+set guioptions=Cns
+set showtabline=never
+
+" User commands
+group user
+command! -description='Grab the latest nightly pentadactyl build' update-pentadactyl-nightly tabopen http://5digits.org/nightly/
+command! gmail tabopen http://mail.google.com/
+map -description "Invoke ':dialog ' and wait for input" gd :dialog<Space>
+map -description "Open the full help in a new tab" <C-h> :tabopen dactyl://help/all<CR>
+
+" vim: set ft=pentadactyl:
