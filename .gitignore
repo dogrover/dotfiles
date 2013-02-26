@@ -1,2 +1,5 @@
 # All Vim plugins are managed by Vundle, so do not include
 vim/bundle/
+
+# Ignore scratch info for pentadactyl
+pentadactyl/info
