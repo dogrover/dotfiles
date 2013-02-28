@@ -194,7 +194,6 @@ nmap <silent> <leader>qq :echo "hi<" . synIDattr(synID(line("."),col("."),1),"na
 " Spelling
 nmap <silent> <leader>ss :setlocal spell!<CR>
 nmap <silent> <leader>se :setlocal spelllang=en<CR>
-nmap <silent> <leader>su :setlocal spelllang=upgoer<CR>
 
 " Working with .vimrc and other common rcs
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
