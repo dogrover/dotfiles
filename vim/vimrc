@@ -35,13 +35,15 @@ call vundle#rc()
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'dogrover/vim-pentadactyl'
-" Bundle 'eugeneching/consolas-powerline-vim'		" Needed only at install
+" Needed only at install
+" Bundle 'eugeneching/consolas-powerline-vim'
 Bundle 'gmarik/vundle'
 Bundle 'joedicastro/vim-markdown-extra-preview'
 Bundle 'kien/ctrlp.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/Gundo'
 Bundle 'vim-scripts/TWiki-Syntax'
@@ -53,42 +55,28 @@ Bundle 'w0ng/vim-hybrid'
 filetype plugin indent on               " Required after the Vundle stuff
 
 " General editor settings
-set autoread                            " Monitor open files for changes
-set backspace=indent,eol,start          " Smart backspacing, where allowed
 set cursorline                          " Highlight the row with the cursor
 set diffopt=filler,iwhite               " Show all lines, ignore trailing spaces
-set encoding=utf-8                      " Bye, ASCII
 set helplang=En                         " Help is in English
 set hidden                              " Keep changed buffers without saving
-set history=200                         " Remember past commands
-set laststatus=2                        " Always show a status line
+set list                                " Display some whitespace
 set more                                " Prompt after a full screen of data
 set nolazyredraw                        " Redraw as often as needed
 set number                              " Always show line numbers
 set numberwidth=6                       " Always keep six columns for line numbers
 set ruler                               " Show rule at the bottom of the screen
-set scrolloff=5							" Keep 5 rows visible around cursor row
 set showcmd                             " Display partial commands in progress
 set showfulltag                         " Show entire completion, when available
 set showmode                            " Display the current editing mode
-set sidescrolloff=5                     " Keep 5 columns visible around cursor
-set synmaxcol=2048						" Prevent bogdown on long lines
+set synmaxcol=2048                      " Prevent bogdown on long lines
 set ttyfast                             " Fast terminal
 set undofile                            " Create persistent undo history for each file
 set undolevels=1000                     " Lots and lots of undo
 set updatecount=100                     " Frequent updates to swapfile
 set viminfo='100,h                      " Save marks from past files
 set visualbell                          " No beeps, but do warn
-set wildmenu                            " Menu has tab completion
 set wildmode=list:longest               " More complete keyword completion
 set window=80                           " Default size for new windows
-syntax on
-
-" Backup options. Consolidate all backups in a single location.
-set backup
-set backupdir=$BACKUPDIR
-set undodir=$BACKUPDIR
-set dir=$BACKUPDIR
 
 " Revolt! Change the leader.
 let mapleader = ","
@@ -109,29 +97,24 @@ vnoremap / /\v
 set ignorecase                          " Default search is not case-sensitive
 set smartcase                           " An uppercase makes search case sens.
 set incsearch                           " Hilite matches
-set showmatch                           " Show matching bracket
 set hlsearch                            " Hilite the search term
-set gdefault                            " Global is the new default, not one
-" Quick un-highlight
-nnoremap <leader><space> :noh<cr>
+set gdefault                            " Apply s// changes to the whole line
 " Jump to bracket pairs more quickly
 nnoremap <tab> %
 vnoremap <tab> %
 
 " Long lines, wrapping, and general indenting
-set autoindent                          " Automatically indent
 set formatoptions=qrn1                  " See 'fo-table' help
 set linebreak                           " Better control over linebreaks
 set shiftwidth=4                        " Indent 4 columns
 set smartindent                         " C-style indenting is the norm
-set smarttab                            " Do the right thing on new lines
 set softtabstop=4                       " Soft-tabs are 4 columns
 set tabstop=4                           " Tabs are 4 columns
 set textwidth=79                        " Yeah, 80 columns is still a good idea
 set whichwrap=b,s,<,>,[,]               " Which characters move across line breaks
 set wrap                                " Display full text of line, wrapping if needed
 
-" Bite the bullet! Disable Windoes-style movement keys.
+" Bite the bullet! Disable Windows-style movement keys.
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -140,7 +123,7 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-" Best bits: Move by screen line, not by file line
+" Move by screen line, not by file line
 nnoremap j gj
 nnoremap k gk
 " Make horizontal scrolling easier
@@ -179,9 +162,6 @@ let g:buftabs_only_basename=1                       " Don't show the directory n
 let g:buftabs_active_highlight_group="Folded"       " Highlight the active buffer
 let g:buftabs_inactive_highlight_group="NonText"    " Lowlight the inactive buffer list
 
-" Handle known filetypes
-au BufNewFile,BufRead *.jmx set filetype=xml
-
 " Better search result navigation
 map <space> /
 map <c-space> ?
@@ -199,6 +179,9 @@ nmap <silent> <leader>se :setlocal spelllang=en<CR>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>ep :e $HOME/.pentadactylrc<CR>
+
+" Handle known filetypes       
+au BufNewFile,BufRead *.jmx set filetype=xml
 
 " Bundle settings
 " ---------------
