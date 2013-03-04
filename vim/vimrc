@@ -7,7 +7,7 @@
 "    - For Windows, use "mklink /H _vimrc [path.to.this.file]"
 "    - Uncomment the "consolas-powerline-vim" bundle
 "    - start vim and run :BundleInstall
-"    - Install the four fonts from the above bundle dir
+"    - Install the fonts from the above bundle dir
 "    - Delete that bundle dir and comment it out below
 
 set nocompatible               " Not vi
@@ -31,7 +31,7 @@ endif
 set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
-" Bundles go here. Start with Vundle itself.
+" Bundles go here
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'dogrover/vim-pentadactyl'
@@ -43,6 +43,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-scriptease'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/Gundo'
@@ -166,11 +167,6 @@ let g:buftabs_inactive_highlight_group="NonText"    " Lowlight the inactive buff
 map <space> /
 map <c-space> ?
 
-" Not sure the original source for this one. Invoking it on a highlighted item
-" shows the highlighting group it belongs to. Now you know what group to
-" update!
-nmap <silent> <leader>qq :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
 " Spelling
 nmap <silent> <leader>ss :setlocal spell!<CR>
 nmap <silent> <leader>se :setlocal spelllang=en<CR>
@@ -180,7 +176,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>ep :e $HOME/.pentadactylrc<CR>
 
-" Handle known filetypes       
+" Handle known filetypes
 au BufNewFile,BufRead *.jmx set filetype=xml
 
 " Bundle settings
