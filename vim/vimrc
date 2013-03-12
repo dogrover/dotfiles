@@ -58,6 +58,7 @@ filetype plugin indent on               " Required after the Vundle stuff
 " General editor settings
 set cursorline                          " Highlight the row with the cursor
 set diffopt=filler,iwhite               " Show all lines, ignore trailing spaces
+set expandtab                           " Differ from "sensible.vim" settings
 set helplang=En                         " Help is in English
 set hidden                              " Keep changed buffers without saving
 set list                                " Display some whitespace
