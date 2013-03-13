@@ -3,3 +3,7 @@ vim/bundle/
 
 # Ignore scratch info for pentadactyl
 pentadactyl/info
+
+# Ignore the logfile output by the setup script
+dotfiles_setup.log
+
