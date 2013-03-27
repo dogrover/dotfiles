@@ -11,7 +11,7 @@ IF "%ERRORLEVEL%" == "0" GOTO ERR_XPOrOlder
 REM Base directory for the dotfiles repo
 SET DOTFILES_DIR=%~dp0
 SET LOG_FILE=%DOTFILESDIR%\dotfiles_setup.log
-ECHO Logging dotfiles setup to %LOG_FILE% > "%LOG_FILE%"
+ECHO Logging dotfiles setup to "%LOG_FILE%" > "%LOG_FILE%"
 
 REM Check pre-requisites
 REM --------------------
@@ -20,8 +20,8 @@ git --help >NUL 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_NoGit
 
 REM Check for target files
-IF NOT EXIST %DOTFILES_DIR%\vim\vimrc GOTO ERR_NoVimrc
-IF NOT EXIST %DOTFILES_DIR%\pentadactyl\pentadactylrc GOTO ERR_NoPentarc
+IF NOT EXIST "%DOTFILES_DIR%\vim\vimrc" GOTO ERR_NoVimrc
+IF NOT EXIST "%DOTFILES_DIR%\pentadactyl\pentadactylrc" GOTO ERR_NoPentarc
 
 REM Check for elevated permissions on Vista and above
 NET FILE 1>NUL 2>NUL
@@ -29,39 +29,48 @@ IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_NotAdmin
 
 :ChecksAllPass
 
+:SetupConsole
+REM Setup Console
+REM -------------
+
+REM Create file links
+ECHO Link Console.xml settings
+del "%APPDATA%\Console\console.xml" >NUL 2>&1
+mklink /H "%APPDATA%\Console\console.xml" "%DOTFILES_DIR%\Console\console.xml" >> "%LOG_FILE%" 2>&1
+
 :SetupVim
 REM Setup Vim
 REM ---------
 
 REM Create file links
 ECHO Link _vimrc to dotfiles\vim\vimrc 
-mklink /H %USERPROFILE%\_vimrc %DOTFILES_DIR%\vim\vimrc >> "%LOG_FILE%" 2>&1
+mklink /H "%USERPROFILE%\_vimrc" "%DOTFILES_DIR%\vim\vimrc" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 ECHO Link .vim to dotfiles\vim
-mklink /J %USERPROFILE%\.vim %DOTFILES_DIR%\vim >> "%LOG_FILE%" 2>&1
+mklink /J "%USERPROFILE%\.vim" "%DOTFILES_DIR%\vim" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 REM Create working folders
 ECHO Create Vim working folder 
-mkdir %APPDATA%\Vim > "%LOG_FILE%" 2>&1
+mkdir "%APPDATA%\Vim" > "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 ECHO Create Vim swap folder 
-mkdir %APPDATA%\Vim\swap >> "%LOG_FILE%" 2>&1
+mkdir "%APPDATA%\Vim\swap" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 ECHO Create Vim backup folder 
-mkdir %APPDATA%\Vim\backup >> "%LOG_FILE%" 2>&1
+mkdir "%APPDATA%\Vim\backup" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 ECHO Create Vim undo folder 
-mkdir %APPDATA%\Vim\undo >> "%LOG_FILE%" 2>&1
+mkdir "%APPDATA%\Vim\undo" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 REM Add Vundle to the vim setup
 ECHO Cloning Vundle repo
-git clone https://github.com/gmarik/vundle %DOTFILES_DIR%/vim/bundle/vundle >> "%LOG_FILE%" 2>&1
+git clone https://github.com/gmarik/vundle "%DOTFILES_DIR%/vim/bundle/vundle" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_GettingVundle
 
 :Setup Pentadactyl
@@ -70,11 +79,11 @@ REM -----------------
 
 REM Create file links
 ECHO Link .pentadactylrc to dotfiles\pentadactyl\pentadactylrc 
-mklink /H %USERPROFILE%\.pentadactylrc %DOTFILES_DIR%\pentadactyl\pentadactylrc >> "%LOG_FILE%" 2>&1
+mklink /H "%USERPROFILE%\.pentadactylrc" "%DOTFILES_DIR%\pentadactyl\pentadactylrc" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 ECHO Link pentadactyl to dotfiles\pentadactyl 
-mklink /J %USERPROFILE%\pentadactyl %DOTFILES_DIR%\pentadactyl >> "%LOG_FILE%" 2>&1
+mklink /J "%USERPROFILE%\pentadactyl" "%DOTFILES_DIR%\pentadactyl" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 :Success
@@ -92,11 +101,11 @@ ECHO ERROR: Git install required. Download from https://code.google.com/p/msysgi
 GOTO Done
 
 :ERR_NoVimrc
-ECHO ERROR: %DOTFILESDIR%\vim\vimrc not found. Project in unknown state. Cannot continue.
+ECHO ERROR: "%DOTFILESDIR%\vim\vimrc" not found. Project in unknown state. Cannot continue.
 GOTO Done
 
 :ERR_NoPentarc
-ECHO ERROR: %DOTFILESDIR%\pentadactyl\pentadactylrc not found. Project in unknown state. Cannot continue.
+ECHO ERROR: "%DOTFILESDIR%\pentadactyl\pentadactylrc" not found. Project in unknown state. Cannot continue.
 GOTO Done
 
 :ERR_NotAdmin
