@@ -34,6 +34,7 @@ call vundle#rc()
 " Bundles go here
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'PProvost/vim-ps1'
 Bundle 'dogrover/vim-pentadactyl'
 " Needed only at install
 " Bundle 'eugeneching/consolas-powerline-vim'
@@ -183,7 +184,7 @@ au BufNewFile,BufRead *.jmx set filetype=xml
 " Bundle settings
 " ---------------
 
-" Ctrl-P 
+" Ctrl-P
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
