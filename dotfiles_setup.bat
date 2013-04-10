@@ -78,7 +78,7 @@ REM Setup Pentadactyl
 REM -----------------
 
 REM Create file links
-ECHO Link .pentadactylrc to dotfiles\pentadactyl\pentadactylrc 
+ECHO Link .pentadactylrc to dotfiles\pentadactyl\pentadactylrc
 mklink /H "%USERPROFILE%\.pentadactylrc" "%DOTFILES_DIR%\pentadactyl\pentadactylrc" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
@@ -121,7 +121,7 @@ ECHO ERROR: Could not create hard link or junction. Log follows:
 GOTO ShowLogFile
 
 :ERR_GettingVundle
-ECHO ERROR; Error cloning Vundle repository. Log follows:
+ECHO ERROR: Error cloning Vundle repository. Log follows:
 GOTO ShowLogFile
 
 :ShowLogFile
