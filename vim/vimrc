@@ -35,13 +35,16 @@ call vundle#rc()
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'PProvost/vim-ps1'
+Bundle 'Valloric/MatchTagAlways'
 Bundle 'dogrover/vim-pentadactyl'
 " Needed only at install
 " Bundle 'eugeneching/consolas-powerline-vim'
 Bundle 'gmarik/vundle'
+Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'joedicastro/vim-markdown-extra-preview'
-Bundle 'kien/ctrlp.vim'
+Bundle 'lambdalisue/nose.vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'reinh/vim-makegreen'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
@@ -49,10 +52,14 @@ Bundle 'tpope/vim-scriptease'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/Gundo'
+Bundle 'vim-scripts/LargeFile'
 Bundle 'vim-scripts/TWiki-Syntax'
 Bundle 'vim-scripts/Tabular'
 Bundle 'vim-scripts/buftabs'
+Bundle 'vim-scripts/xml.vim'
 Bundle 'w0ng/vim-hybrid'
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-notes'
 
 " The rest of the settings
 filetype plugin indent on               " Required after the Vundle stuff
@@ -106,6 +113,9 @@ set gdefault                            " Apply s// changes to the whole line
 " Jump to bracket pairs more quickly
 nnoremap <tab> %
 vnoremap <tab> %
+" Quicker find and replace
+nnoremap <C-S-S> :%s//
+inoremap <C-S-S> :%s//
 
 " Long lines, wrapping, and general indenting
 set formatoptions=qrn1                  " See 'fo-table' help
@@ -117,6 +127,9 @@ set tabstop=4                           " Tabs are 4 columns
 set textwidth=79                        " Yeah, 80 columns is still a good idea
 set whichwrap=b,s,<,>,[,]               " Which characters move across line breaks
 set wrap                                " Display full text of line, wrapping if needed
+
+" Always strip whitespace when saving
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Bite the bullet! Disable Windows-style movement keys.
 nnoremap <up> <nop>
@@ -130,11 +143,8 @@ inoremap <right> <nop>
 " Move by screen line, not by file line
 nnoremap j gj
 nnoremap k gk
-" Make horizontal scrolling easier
-nmap <silent> <C-o> 10zl
-nmap <silent> <C-i> 10zh
 
-" Quick macro to insert current date\time stamp 
+" Quick macro to insert current date\time stamp
 :nnoremap <S-F5> "=strftime("%d-%b-%Y %H:%M:%S")<CR>P
 :inoremap <S-F5> <C-R>=strftime("%d-%b-%Y %H:%M:%S")<CR>
 
@@ -144,7 +154,7 @@ let html_use_css=1                      " Generate shorter HTML 4 file
 let use_xhtml=1                         " Generate valid XHTML
 
 " Keymappings which swap different text entities. See:
-" http://vim.wikia.com/wiki/Swapping_characters,_words_and_lines 
+" http://vim.wikia.com/wiki/Swapping_characters,_words_and_lines
 " Swaps the current character with the next. Cursor stays.
 :nnoremap <silent> gc xph
 " Swaps the current word with the next, honoring puctuation, and keeping
@@ -152,7 +162,7 @@ let use_xhtml=1                         " Generate valid XHTML
 :nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
 " Swap the current word with the previous, keeping cursor on current word
 " (like 'pushing' the word to the left.)
-:nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l> 
+:nnoremap <silent> gl "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
 " Swap the current word with the next, keeping cursor on current word (like
 " 'pushing' the word to the right.)
 :nnoremap <silent> gr "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>
@@ -166,30 +176,21 @@ let g:buftabs_only_basename=1                       " Don't show the directory n
 let g:buftabs_active_highlight_group="Folded"       " Highlight the active buffer
 let g:buftabs_inactive_highlight_group="NonText"    " Lowlight the inactive buffer list
 
-" Better search result navigation
-map <space> /
-map <c-space> ?
-
 " Spelling
 nmap <silent> <leader>ss :setlocal spell!<CR>
 nmap <silent> <leader>se :setlocal spelllang=en<CR>
 
 " Working with .vimrc and other common rcs
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-nmap <silent> <leader>ep :e $HOME/.pentadactylrc<CR>
+nmap <silent> <leader>ev :edit $MYVIMRC<CR>
+nmap <silent> <leader>sv :source $MYVIMRC<CR>
+nmap <silent> <leader>ep :edit $HOME/.pentadactylrc<CR>
+nmap <silent> <leader>em :edit $HOME/pentadactylrc/plugins/mcafee.penta<CR>
 
 " Handle known filetypes
 au BufNewFile,BufRead *.jmx set filetype=xml
 
 " Bundle settings
 " ---------------
-
-" Ctrl-P
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
 
 " Gundo
 nmap <silent> <C-F5> :GundoToggle<CR>
