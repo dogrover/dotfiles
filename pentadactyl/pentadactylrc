@@ -3,14 +3,30 @@
 " Load all plugins
 loadplugins '\.(js|penta)$'
 
+" Revolt!
+map , <Leader>
+
 " Core settings
 :colorscheme zenburn
 set defsearch=google
 set passkeys=mail.google.com:ujkopnclerafz}{#/`~?<CR><Tab>,gi,gc,gl,ga
 
 " Buftabs settings
-set guioptions=Cns
+set guioptions=Cs
 set showtabline=never
+set buftabs-elem=tin
+
+" Some keyboard customization
+nmap J :tabprevious<CR>
+nmap K :tabnext<CR>
+nmap j 3<Down>
+nmap k 3<Up>
+
+" iMacros settings
+" Shortcut for running the last recorded macro
+nmap <Leader>m. :open imacros://run/?m=%23Current.iim<CR>
+" View the sidebar
+nmap <Leader>mm :sidebar iOpus iMacros<CR>
 
 " User commands
 group user

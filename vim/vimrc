@@ -37,6 +37,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'PProvost/vim-ps1'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'dogrover/vim-pentadactyl'
+Bundle 'dogrover/vim-syntax-checklist-wrangler'
 " Needed only at install
 " Bundle 'eugeneching/consolas-powerline-vim'
 Bundle 'gmarik/vundle'
@@ -56,6 +57,7 @@ Bundle 'vim-scripts/LargeFile'
 Bundle 'vim-scripts/TWiki-Syntax'
 Bundle 'vim-scripts/Tabular'
 Bundle 'vim-scripts/buftabs'
+Bundle 'vim-scripts/iim.vim'
 Bundle 'vim-scripts/xml.vim'
 Bundle 'w0ng/vim-hybrid'
 Bundle 'xolox/vim-misc'
@@ -184,7 +186,7 @@ nmap <silent> <leader>se :setlocal spelllang=en<CR>
 nmap <silent> <leader>ev :edit $MYVIMRC<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
 nmap <silent> <leader>ep :edit $HOME/.pentadactylrc<CR>
-nmap <silent> <leader>em :edit $HOME/pentadactylrc/plugins/mcafee.penta<CR>
+nmap <silent> <leader>em :edit $HOME/pentadactyl/plugins/mcafee.penta<CR>
 
 " Handle known filetypes
 au BufNewFile,BufRead *.jmx set filetype=xml
