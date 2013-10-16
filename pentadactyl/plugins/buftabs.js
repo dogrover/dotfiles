@@ -144,13 +144,15 @@ let buftabs = {
         else if (image == '')
             image = BookmarkCache.DEFAULT_FAVICON;
 
-        label.style.paddingLeft = '20px';
+        let paddingLeft = tab.pinned ? '20px' : '22px';
+        label.style.paddingLeft = paddingLeft;
+
         label.style.backgroundImage = 'url("' + image + '")';
     },
 
     removeFavicon: function(arg) {
         let label = buftabs.Olabel(arg);
-        label.style.paddingLeft = '2px';
+        label.style.paddingLeft = '0';
         label.style.backgroundImage = 'none';
     },
 
@@ -539,45 +541,29 @@ highlight.loadCSS(literal(/*
          margin:0 !important;
          padding:0 !important;
          overflow:hidden;
+         height: 16px;
      }
+     BufTab, BufTabAlternate, BufTabSelected {
+         background-repeat:no-repeat;
+         background-size:16px 16px;
+         background-position: 2px top;
+         margin: 0 2px 0 4px !important;
+     }
+
      BufTabSelected {
-         background-repeat:no-repeat;
-         background-size:contain, contain;
-         background-position: 2px top;
-         background-color:#fff;
+         background-color:rgba(255,255,255,.9);
          color:#000;
-         margin:0 !important;
          font-weight:normal;
-         border-bottom-left-radius:2px;
-         border-bottom-right-radius:2px;
-         max-width:130px;
+         border-radius:2px;
+         max-width:200px;
      }
-     BufTabAlternate {
-         background-repeat:no-repeat;
-         background-size:contain, contain;
-         background-position: 2px top;
-         margin:0 !important;
-         cursor:pointer !important;
-         max-width:130px;
-    }
-    BufTab {
-        background-repeat:no-repeat;
-        background-size:contain, contain;
-        background-position: 2px top;
-        margin:0 !important;
+     BufTabAlternate, BufTab {
         cursor:pointer !important;
-        max-width:130px;
+        max-width:200px;
     }
-    BufTab:hover {
+    BufTab:hover, BufTabAlternate:hover {
         color:#2e3330;
-        background-color: #88b090;
-        border-bottom-left-radius:2px;
-        border-bottom-right-radius:2px;
-    }
-    BufTabAlternate:hover {
-        color:#2e3330;
-        background-color: #88b090;
-        border-bottom-left-radius:2px;
-        border-bottom-right-radius:2px;
+        background-color: rgba(255,255,255,.8);
+        border-radius:2px;
     }
 */), true);
