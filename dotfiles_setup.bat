@@ -10,8 +10,10 @@ IF "%ERRORLEVEL%" == "0" GOTO ERR_XPOrOlder
 
 REM Base directory for the dotfiles repo
 SET DOTFILES_DIR=%~dp0
-SET LOG_FILE=%DOTFILESDIR%\dotfiles_setup.log
+SET LOG_FILE=%DOTFILES_DIR%\dotfiles_setup.log
 ECHO Logging dotfiles setup to "%LOG_FILE%" > "%LOG_FILE%"
+
+SET USER_PS_FOLDER=%USERPROFILE%\Documents\WindowsPowerShell
 
 REM Check pre-requisites
 REM --------------------
@@ -22,6 +24,7 @@ IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_NoGit
 REM Check for target files
 IF NOT EXIST "%DOTFILES_DIR%\vim\vimrc" GOTO ERR_NoVimrc
 IF NOT EXIST "%DOTFILES_DIR%\pentadactyl\pentadactylrc" GOTO ERR_NoPentarc
+IF NOT EXIST "%DOTFILES_DIR%\powershell\powershell_profile.ps1" GOTO ERR_NoPowershellrc
 
 REM Check for elevated permissions on Vista and above
 NET FILE 1>NUL 2>NUL
@@ -43,7 +46,7 @@ REM Setup Vim
 REM ---------
 
 REM Create file links
-ECHO Link _vimrc to dotfiles\vim\vimrc 
+ECHO Link _vimrc to dotfiles\vim\vimrc
 mklink /H "%USERPROFILE%\_vimrc" "%DOTFILES_DIR%\vim\vimrc" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
@@ -52,19 +55,19 @@ mklink /J "%USERPROFILE%\.vim" "%DOTFILES_DIR%\vim" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 REM Create working folders
-ECHO Create Vim working folder 
+ECHO Create Vim working folder
 mkdir "%APPDATA%\Vim" > "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
-ECHO Create Vim swap folder 
+ECHO Create Vim swap folder
 mkdir "%APPDATA%\Vim\swap" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
-ECHO Create Vim backup folder 
+ECHO Create Vim backup folder
 mkdir "%APPDATA%\Vim\backup" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
-ECHO Create Vim undo folder 
+ECHO Create Vim undo folder
 mkdir "%APPDATA%\Vim\undo" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
@@ -73,7 +76,7 @@ ECHO Cloning Vundle repo
 git clone https://github.com/gmarik/vundle "%DOTFILES_DIR%/vim/bundle/vundle" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_GettingVundle
 
-:Setup Pentadactyl
+:SetupPentadactyl
 REM Setup Pentadactyl
 REM -----------------
 
@@ -82,9 +85,23 @@ ECHO Link .pentadactylrc to dotfiles\pentadactyl\pentadactylrc
 mklink /H "%USERPROFILE%\.pentadactylrc" "%DOTFILES_DIR%\pentadactyl\pentadactylrc" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
-ECHO Link pentadactyl to dotfiles\pentadactyl 
+ECHO Link pentadactyl to dotfiles\pentadactyl
 mklink /J "%USERPROFILE%\pentadactyl" "%DOTFILES_DIR%\pentadactyl" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
+
+:SetupPowerShell
+REM Setup PowerShell
+REM ----------------
+
+ECHO Ensure user PowerShell profile folder exists
+IF NOT EXIST "%USER_PS_FOLDER%" mkdir "%USER_PS_FOLDER%" > "%LOG_FILE%" 2>&1
+IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
+
+REM Create file links
+ECHO Link user's PowerShell profile
+mklink /H "%USER_PS_FOLDER%\Microsoft.PowerShell_profile.ps1" "%DOTFILES_DIR%\powershell\powershell_profile.ps1" >> "%LOG_FILE%" 2>&1
+IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
+
 
 :Success
 ECHO Success!
@@ -101,11 +118,15 @@ ECHO ERROR: Git install required. Download from https://code.google.com/p/msysgi
 GOTO Done
 
 :ERR_NoVimrc
-ECHO ERROR: "%DOTFILESDIR%\vim\vimrc" not found. Project in unknown state. Cannot continue.
+ECHO ERROR: "%DOTFILES_DIR%\vim\vimrc" not found. Project in unknown state. Cannot continue.
 GOTO Done
 
 :ERR_NoPentarc
-ECHO ERROR: "%DOTFILESDIR%\pentadactyl\pentadactylrc" not found. Project in unknown state. Cannot continue.
+ECHO ERROR: "%DOTFILES_DIR%\pentadactyl\pentadactylrc" not found. Project in unknown state. Cannot continue.
+GOTO Done
+
+:ERR_NoPentarc
+ECHO ERROR: "%DOTFILES_DIR%\powershell\powershell_profile.ps1" not found. Project in unknown state. Cannot continue.
 GOTO Done
 
 :ERR_NotAdmin

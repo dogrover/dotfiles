@@ -188,6 +188,7 @@ nmap <silent> <leader>ev :edit $MYVIMRC<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
 nmap <silent> <leader>ep :edit $HOME/.pentadactylrc<CR>
 nmap <silent> <leader>em :edit $HOME/pentadactyl/plugins/mcafee.penta<CR>
+nmap <silent> <leader>es :edit $HOME/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>
 
 " Handle known filetypes
 au BufNewFile,BufRead *.jmx set filetype=xml
