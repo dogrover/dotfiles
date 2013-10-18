@@ -36,6 +36,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'PProvost/vim-ps1'
 Bundle 'Valloric/MatchTagAlways'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'dogrover/vim-pentadactyl'
 Bundle 'dogrover/vim-syntax-checklist-wrangler'
 " Needed only at install
