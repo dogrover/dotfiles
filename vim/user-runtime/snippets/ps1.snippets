@@ -1,0 +1,85 @@
+# PowerShell snippets
+
+snippet help "Comment-based help template"
+<#
+.SYNOPSIS
+A brief description of the function or script. This keyword can be used only once in each topic.
+
+.DESCRIPTION
+A detailed description of the function or script. This keyword can be used only once in each topic.
+
+.PARAMETER ParameterName
+The description of a parameter. Add a .PARAMETER keyword for each parameter in the function or script syntax.
+
+.EXAMPLE
+A sample command that uses the function or script, optionally followed by sample output and a description. Repeat this keyword for each example.
+
+.INPUTS
+The Microsoft .NET Framework types of objects that can be piped to the function or script. You can also include a description of the input objects.
+
+.OUTPUTS
+The .NET Framework type of the objects that the cmdlet returns. You can also include a description of the returned objects.
+
+.NOTES
+Additional information about the function or script.
+
+.LINK
+The name of a related topic, or a URI beginning with "http" or "https". Repeat the .LINK keyword for each related topic.
+#>
+endsnippet
+
+snippet exception "Wrap with Try / Catch" !b
+Try
+	{ ${VISUAL:statement} }
+Catch [Exception]
+	{ "Generic Handler" }
+endsnippet
+
+snippet [pa "Add parameter binding to a variable" !b
+[Parameter(Mandatory=$True, Position=0)]
+endsnippet
+
+snippet debug "Insert a Write-Debug statement"
+Write-Debug "$(Get-Func)| $1"
+endsnippet
+
+snippet if "Insert an If statement" !b
+If ($1) {
+	$2
+}
+endsnippet
+
+snippet switch "Switch default block"
+Switch ($1) {
+	'value' {
+		Break
+	}
+	default {
+	}
+}
+endsnippet
+
+snippet pester "Pester prelude" !b
+# Every Zeno unti test should begin with these lines
+. '.\_pester_preamble.ps1'
+. (Get-PathToCommand)
+
+endsnippet
+
+snippet psobject "Create a custom object" !b
+New-Object -TypeName PSObject -Property (@{
+	'$1' = ""
+	'' = ""
+})
+endsnippet
+
+snippet logs "Turn on Verbose and Debug Logging" !b
+$VerbosePreference = 'Continue'
+$DebugPreference = 'Continue'
+
+${VISUAL:statement}
+
+$VerbosePreference = 'SilentlyContinue'
+$DebugPreference = 'SilentlyContinue'
+
+endsnippet
