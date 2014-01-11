@@ -1,4 +1,6 @@
-"hg6830
+" Helper functions
+javascript function bangtab(url, bang) { commands.execute((bang ? 'open': 'tabnew') + ' ' + url) }
+javascript function bangcmd(cmd, desc, url) { commands.execute('command! -bang -description "' + desc + '" ' + cmd + ' -js bangtab("' + url + '", bang)') }
 
 " Load all plugins
 loadplugins '\.(js|penta)$'
@@ -34,5 +36,6 @@ command! -description='Grab the latest nightly pentadactyl build' update-pentada
 command! gmail -description 'GMail site' tabopen http://mail.google.com/
 map -description 'Invoke ":dialog " and wait for input' gd :dialog<Space>
 map -description 'Open the full help in a new tab' <C-h> :tabopen dactyl://help/all<CR>
+map -description 'Thesaurus lookup' <Leader>wt :tabopen http://thesaurus.com/search?search&q=
 
 " vim: set ft=pentadactyl:

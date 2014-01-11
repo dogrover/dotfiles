@@ -16,18 +16,19 @@ filetype off                   " Required for Vundle
 " OS-specific settings. Keep actual changes to a minimum. Set variables
 " instead, and use them later.
 if has('win32') || has('win64')
-	set guifont=Consolas_for_Powerline_FixedD:h10:cANSI
-	set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
+    set guifont=Consolas_for_Powerline_FixedD:h10:cANSI
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
     let $BACKUPDIR=$HOME . "/Documents/VimBackup//,."
 endif
 
 if has('unix')
-	set guifont=Consolas\ for\ Powerline\ 10
-	set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-	let $BACKUPDIR=$HOME . "/VimBackup//,."
+    set guifont=Consolas\ for\ Powerline\ 10
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+    let $BACKUPDIR=$HOME . "/VimBackup//,."
 endif
 
 " Invoke vundle
+set rtp+=$HOME/.vim/user-runtime/
 set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -35,6 +36,7 @@ call vundle#rc()
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'PProvost/vim-ps1'
+Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'dogrover/vim-pentadactyl'
@@ -43,7 +45,6 @@ Bundle 'dogrover/vim-syntax-checklist-wrangler'
 " Bundle 'eugeneching/consolas-powerline-vim'
 Bundle 'gmarik/vundle'
 Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'joedicastro/vim-markdown-extra-preview'
 Bundle 'lambdalisue/nose.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'reinh/vim-makegreen'
@@ -98,6 +99,7 @@ let mapleader = ","
 " UI stuff
 set guioptions=emr
 set selectmode=mouse,key
+set nocursorline
 :color hybrid
 
 " Add Firefox-style buffer switching
@@ -188,7 +190,8 @@ nmap <silent> <leader>ev :edit $MYVIMRC<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
 nmap <silent> <leader>ep :edit $HOME/.pentadactylrc<CR>
 nmap <silent> <leader>em :edit $HOME/pentadactyl/plugins/mcafee.penta<CR>
-nmap <silent> <leader>es :edit $HOME/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>
+nmap <silent> <leader>eP :edit $HOME/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>
+nmap <leader>es :execute ":edit $VIMHOME/snippets/" . &filetype . ".snippets"<CR>
 
 " Handle known filetypes
 au BufNewFile,BufRead *.jmx set filetype=xml
@@ -202,3 +205,6 @@ nmap <silent> <C-F5> :GundoToggle<CR>
 " Powerline
 let g:Powerline_symbols="fancy"
 
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
