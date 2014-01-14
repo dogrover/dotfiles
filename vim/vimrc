@@ -26,13 +26,13 @@ endif
 
 if isdirectory(expand(s:vim_data_dir))
     if &directory =~# '^\.,'
-        let &directory = expand(s:dir) . '/swap//,' . &directory
+        let &directory = expand(s:vim_data_dir) . '/swap//,' . &directory
     endif
     if &backupdir =~# '^\.,'
-        let &backupdir = expand(s:dir) . '/backup//,' . &backupdir
+        let &backupdir = expand(s:vim_data_dir) . '/backup//,' . &backupdir
     endif
     if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
-        let &undodir = expand(s:dir) . '/undo//,' . &undodir
+        let &undodir = expand(s:vim_data_dir) . '/undo//,' . &undodir
     endif
 endif
 

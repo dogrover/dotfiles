@@ -56,19 +56,19 @@ IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 REM Create working folders
 ECHO Create Vim working folder
-mkdir "%APPDATA%\Vim" > "%LOG_FILE%" 2>&1
+mkdir "%LOCALAPPDATA%\Vim" > "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 ECHO Create Vim swap folder
-mkdir "%APPDATA%\Vim\swap" >> "%LOG_FILE%" 2>&1
+mkdir "%LOCALAPPDATA%\Vim\swap" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 ECHO Create Vim backup folder
-mkdir "%APPDATA%\Vim\backup" >> "%LOG_FILE%" 2>&1
+mkdir "%LOCALAPPDATA%\Vim\backup" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 ECHO Create Vim undo folder
-mkdir "%APPDATA%\Vim\undo" >> "%LOG_FILE%" 2>&1
+mkdir "%LOCALAPPDATA%\Vim\undo" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 REM Add Vundle to the vim setup
