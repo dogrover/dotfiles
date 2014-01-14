@@ -2,7 +2,7 @@
 	name = Dan Grover
 	email = dogrover@gmail.com
 [credential]
-	helper = store
+	helper = !'C:\\Users\\dgrover\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe'
 [mergetool "bc2"]
 	cmd = C:\\Program Files (x86)\\Beyond Compare 2\\BC2.exe
 [merge]
@@ -18,3 +18,5 @@
 	untracked = cyan normal
 [core]
 	autocrlf = true
+[push]
+	default = simple
