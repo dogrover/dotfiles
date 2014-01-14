@@ -102,7 +102,6 @@ ECHO Link user's PowerShell profile
 mklink /H "%USER_PS_FOLDER%\Microsoft.PowerShell_profile.ps1" "%DOTFILES_DIR%\powershell\powershell_profile.ps1" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
-
 :Success
 ECHO Success!
 SET EXIT_CODE=0
