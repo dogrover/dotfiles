@@ -32,14 +32,14 @@ IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_NotAdmin
 
 :ChecksAllPass
 
-:SetupConsole
-REM Setup Console
-REM -------------
+:SetupConEmu
+REM Setup ConEmu
+REM ------------
 
 REM Create file links
-ECHO Link Console.xml settings
-del "%APPDATA%\Console\console.xml" >NUL 2>&1
-mklink /H "%APPDATA%\Console\console.xml" "%DOTFILES_DIR%\Console\console.xml" >> "%LOG_FILE%" 2>&1
+ECHO Link ConEmu.xml settings
+del "%APPDATA%\ConEmu.xml" >NUL 2>&1
+mklink /H "%APPDATA%\ConEmu.xml" "%DOTFILES_DIR%\ConEmu\ConEmu.xml" >> "%LOG_FILE%" 2>&1
 
 :SetupVim
 REM Setup Vim
@@ -51,7 +51,7 @@ mklink /H "%USERPROFILE%\_vimrc" "%DOTFILES_DIR%\vim\vimrc" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 ECHO Link .vim to dotfiles\vim
-mklink /J "%USERPROFILE%\.vim" "%DOTFILES_DIR%\vim" >> "%LOG_FILE%" 2>&1
+mklink /D "%USERPROFILE%\.vim" "%DOTFILES_DIR%\vim" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 REM Create working folders
@@ -99,7 +99,7 @@ IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 REM Create file links
 ECHO Link user's PowerShell profile
-mklink /H "%USER_PS_FOLDER%\Microsoft.PowerShell_profile.ps1" "%DOTFILES_DIR%\powershell\powershell_profile.ps1" >> "%LOG_FILE%" 2>&1
+mklink "%USER_PS_FOLDER%\Microsoft.PowerShell_profile.ps1" "%DOTFILES_DIR%\powershell\powershell_profile.ps1" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
 
 :Success

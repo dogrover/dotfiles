@@ -2,13 +2,10 @@
 " Tested on Windows and Linux
 
 " After getting this file, bootstrap the vim configuration like this:
-"    - git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"    - create a symlink from ~/.vimrc to this file
-"    - For Windows, use "mklink /H _vimrc [path.to.this.file]"
-"    - Uncomment the "consolas-powerline-vim" bundle
+"    - run dotfiles\dotfiles_setup
+"    - install the fonts at dotfiles\fonts into the OS
 "    - start vim and run :BundleInstall
-"    - Install the fonts from the above bundle dir
-"    - Delete that bundle dir and comment it out below
+"    - exit vim and restart
 
 set nocompatible               " Not vi
 filetype off                   " Required for Vundle
@@ -41,8 +38,6 @@ Bundle 'Valloric/MatchTagAlways'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'dogrover/vim-pentadactyl'
 Bundle 'dogrover/vim-syntax-checklist-wrangler'
-" Needed only at install
-" Bundle 'eugeneching/consolas-powerline-vim'
 Bundle 'gmarik/vundle'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'lambdalisue/nose.vim'
