@@ -15,13 +15,29 @@ filetype off                   " Required for Vundle
 if has('win32') || has('win64')
     set guifont=Consolas_for_Powerline_FixedD:h10:cANSI
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
-    let $BACKUPDIR=$HOME . "/Documents/VimBackup//,."
+    let s:vim_data_dir = '$LOCALAPPDATA/Vim'
 endif
 
 if has('unix')
     set guifont=Consolas\ for\ Powerline\ 10
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-    let $BACKUPDIR=$HOME . "/VimBackup//,."
+    let s:vim_data_dir="$HOME/VimBackup//,."
+endif
+
+if isdirectory(expand(s:vim_data_dir))
+    if &directory =~# '^\.,'
+        let &directory = expand(s:dir) . '/swap//,' . &directory
+    endif
+    if &backupdir =~# '^\.,'
+        let &backupdir = expand(s:dir) . '/backup//,' . &backupdir
+    endif
+    if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
+        let &undodir = expand(s:dir) . '/undo//,' . &undodir
+    endif
+endif
+
+if exists('+undofile')
+  set undofile
 endif
 
 " Invoke vundle
