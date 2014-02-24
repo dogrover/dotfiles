@@ -3,14 +3,14 @@
 	email = dogrover@gmail.com
 [credential]
 	helper = !'C:\\Users\\dgrover\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe'
-[mergetool "bc2"]
-	cmd = C:\\Program Files (x86)\\Beyond Compare 2\\BC2.exe
+[mergetool "bc3"]
+	cmd = C:\\Program Files (x86)\\Beyond Compare 3\\BCompare.exe
 [merge]
-	tool = bc2
-[difftool "bc2"]
-	cmd = C:\\Program Files (x86)\\Beyond Compare 2\\BC2.exe
+	tool = bc3
+[difftool "bc3"]
+	cmd = C:\\Program Files (x86)\\Beyond Compare 3\\BCompare.exe
 [diff]
-	tool = bc2
+	tool = bc3
 [color]
 	ui = true
 [color "status"]
