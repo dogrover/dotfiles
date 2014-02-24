@@ -55,7 +55,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'dogrover/vim-pentadactyl'
 Bundle 'dogrover/vim-syntax-checklist-wrangler'
 Bundle 'gmarik/vundle'
-Bundle 'jmcantrell/vim-virtualenv'
+" Bundle 'klen/python-mode'
 Bundle 'lambdalisue/nose.vim'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'reinh/vim-makegreen'
@@ -104,8 +104,9 @@ set visualbell                          " No beeps, but do warn
 set wildmode=list:longest               " More complete keyword completion
 set window=80                           " Default size for new windows
 
-" Revolt! Change the leader.
+" Revolt! Change the leader. Then escape.
 let mapleader = ","
+inoremap jj <Esc>
 
 " UI stuff
 set guioptions=emr
@@ -219,3 +220,6 @@ let g:Powerline_symbols="fancy"
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+
+" YouCompleteMe
+let g:ycm_server_keep_logfiles=1
