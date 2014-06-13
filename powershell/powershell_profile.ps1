@@ -1,5 +1,6 @@
 Import-Module PsGet
 Import-Module Find-String
+Import-Module VirtualEnvWrapper
 
 Function Prompt {
     $realLASTEXITCODE = $LASTEXITCODE
@@ -33,6 +34,12 @@ Function Start-PowerCLI {
     Connect-VIServer -Server beaengvc1.beaeng.mfeeng.org
 }
 New-Alias -Name 'spc' -Value 'Start-PowerCLI' -Description 'Add snap-in and connect to VSphere'
+
+# VirtualEnvWrapper
+# -----------------
+$ProjectHome = 'C:\source\dogrover'
+New-Alias -Name 'sve' -Value Set-VirtualEnvironment -Scope 'Global'
+New-Alias -Name 'nvep' -Value New-VirtualEnvProject -Scope 'Global'
 
 # Convenience functions for toggling Debug and Verbose preferences
 Function Switch-DebugPreference {
