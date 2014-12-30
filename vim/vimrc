@@ -217,6 +217,9 @@ nmap <silent> <C-F5> :GundoToggle<CR>
 " Powerline
 let g:Powerline_symbols="fancy"
 
+" Tabular
+" :AddTabularPattern first_colon /^[^:]*\zs:/l0c1
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
