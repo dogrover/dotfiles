@@ -73,7 +73,7 @@ IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 REM Add Vundle to the vim setup
 ECHO Cloning Vundle repo
-git clone https://github.com/gmarik/vundle "%DOTFILES_DIR%/vim/bundle/vundle" >> "%LOG_FILE%" 2>&1
+git clone https://github.com/VundleVim/Vundle.vim.git "%DOTFILES_DIR%/vim/bundle/vundle" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_GettingVundle
 
 :SetupPentadactyl
