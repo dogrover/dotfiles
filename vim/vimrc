@@ -51,13 +51,16 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'PProvost/vim-ps1'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/MatchTagAlways'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'dogrover/vim-pentadactyl'
 Bundle 'dogrover/vim-syntax-checklist-wrangler'
+
 Bundle 'gmarik/vundle'
-" Bundle 'klen/python-mode'
+Bundle 'hashivim/vim-terraform'
+Bundle 'helino/vim-json'
+Bundle 'klen/python-mode'
 Bundle 'lambdalisue/nose.vim'
+Bundle 'pangloss/vim-javascript'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-abolish'
@@ -197,16 +200,10 @@ let g:buftabs_inactive_highlight_group="NonText"    " Lowlight the inactive buff
 nmap <silent> <leader>ss :setlocal spell!<CR>
 nmap <silent> <leader>se :setlocal spelllang=en<CR>
 
-" Working with .vimrc and other common rcs
-nmap <silent> <leader>ev :edit $MYVIMRC<CR>
-nmap <silent> <leader>sv :source $MYVIMRC<CR>
-nmap <silent> <leader>ep :edit $HOME/.pentadactylrc<CR>
-nmap <silent> <leader>em :edit $HOME/pentadactyl/plugins/mcafee.penta<CR>
-nmap <silent> <leader>eP :edit $HOME/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>
-nmap <leader>es :execute ":edit $VIMHOME/snippets/" . &filetype . ".snippets"<CR>
-
 " Handle known filetypes
 au BufNewFile,BufRead *.jmx set filetype=xml
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 
 " Bundle settings
 " ---------------
@@ -217,12 +214,61 @@ nmap <silent> <C-F5> :GundoToggle<CR>
 " Powerline
 let g:Powerline_symbols="fancy"
 
+" Surround
+vmap ,c <esc>a--><esc>'<i<!--<esc>'>$
+
 " Tabular
 " :AddTabularPattern first_colon /^[^:]*\zs:/l0c1
 
 " UltiSnips
+let g:my_ultisnips_dir = 'snips'
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", g:my_ultisnips_dir]
 
 " YouCompleteMe
 let g:ycm_server_keep_logfiles=1
+
+" Functions for quickly changing the font size
+if has("unix")
+    function! FontSizePlus ()
+      let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+      let l:gf_size_whole = l:gf_size_whole + 1
+      let l:new_font_size = ' '.l:gf_size_whole
+      let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+    endfunction
+
+    function! FontSizeMinus ()
+      let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+      let l:gf_size_whole = l:gf_size_whole - 1
+      let l:new_font_size = ' '.l:gf_size_whole
+      let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+    endfunction
+else
+    function! FontSizePlus ()
+      let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
+      let l:gf_size_whole = l:gf_size_whole + 1
+      let l:new_font_size = ':h'.l:gf_size_whole
+      let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
+    endfunction
+
+    function! FontSizeMinus ()
+      let l:gf_size_whole = matchstr(&guifont, '\(:h\)\@<=\d\+$')
+      let l:gf_size_whole = l:gf_size_whole - 1
+      let l:new_font_size = ':h'.l:gf_size_whole
+      let &guifont = substitute(&guifont, ':h\d\+$', l:new_font_size, '')
+    endfunction
+endif
+
+if has("gui_running")
+    nmap <S-F12> :call FontSizeMinus()<CR>
+    nmap <F12> :call FontSizePlus()<CR>
+endif
+
+" Working with .vimrc and other common rcs
+nmap <silent> <leader>ev :edit $MYVIMRC<CR>
+nmap <silent> <leader>sv :source $MYVIMRC<CR>
+nmap <silent> <leader>ep :edit $HOME/.pentadactylrc<CR>
+nmap <silent> <leader>em :edit $HOME/pentadactyl/plugins/mcafee.penta<CR>
+nmap <silent> <leader>eP :edit $HOME/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>
+nmap <leader>es :execute ":edit $VIMHOME/" . g:my_ultisnips_dir . "/" . &filetype . ".snippets"<CR>
+
