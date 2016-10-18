@@ -30,8 +30,8 @@ If (Test-ElevationStatus) {
 }
 
 Function Start-PowerCLI {
-    Add-PSSnapIn 'VMWare.VimAutomation.Core'
-    Connect-VIServer -Server beaengvc1.beaeng.mfeeng.org
+    Import-Module 'VMWare.VimAutomation.Core'
+    Connect-VIServer -Server beaengvc01.beaeng.mfeeng.org
 }
 New-Alias -Name 'spc' -Value 'Start-PowerCLI' -Description 'Add snap-in and connect to VSphere'
 
@@ -69,5 +69,9 @@ $settings.DebugForegroundColor = 'DarkYellow'
 # Set data for the prompt
 $script:curr_user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $script:curr_host = [System.Net.Dns]::GetHostName()
-# $PString = "{Green:}$($curr_user)@{Yellow:}$($curr_host):{DarkYellow:}$(Get-Path)"
+# $PString = "{Green:}$($curr_user)@{Yellow:}$($curr_host):{DarkYellow:}$(Get-Location)"
+
+
+# Load posh-git example profile
+# . 'C:\Users\groverda\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
 
