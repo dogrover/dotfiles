@@ -4,7 +4,7 @@
 " After getting this file, bootstrap the vim configuration like this:
 "    - run dotfiles\dotfiles_setup
 "    - install the fonts at dotfiles\fonts into the OS
-"    - start vim and run :BundleInstall
+"    - start vim and run :PluginInstall
 "    - exit vim and restart
 
 set nocompatible               " Not vi
@@ -20,8 +20,9 @@ endif
 
 if has('unix')
     set guifont=Consolas\ for\ Powerline\ 10
+    set t_Co=256
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-    let s:vim_data_dir="$HOME/VimBackup//,."
+    let s:vim_data_dir="$HOME/.vim/backup//,."
 endif
 
 if isdirectory(expand(s:vim_data_dir))
@@ -43,46 +44,48 @@ endif
 " Invoke vundle
 set rtp+=$HOME/.vim/user-runtime/
 set rtp+=$HOME/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
-" Bundles go here
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'PProvost/vim-ps1'
-Bundle 'SirVer/ultisnips'
-Bundle 'Valloric/MatchTagAlways'
-Bundle 'alfredodeza/pytest.vim'
-Bundle 'dogrover/vim-pentadactyl'
-Bundle 'dogrover/vim-syntax-checklist-wrangler'
+" Plugins go here
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'PProvost/vim-ps1'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'alfredodeza/pytest.vim'
+Plugin 'dogrover/vim-pentadactyl'
+Plugin 'dogrover/vim-syntax-checklist-wrangler'
+Plugin 'gmarik/vundle'
+Plugin 'godlygeek/csapprox'
+Plugin 'hashivim/vim-terraform'
+Plugin 'helino/vim-json'
+Plugin 'klen/python-mode'
+Plugin 'lambdalisue/nose.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-scriptease'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/Gundo'
+Plugin 'vim-scripts/LargeFile'
+Plugin 'vim-scripts/TWiki-Syntax'
+Plugin 'vim-scripts/Tabular'
+Plugin 'vim-scripts/buftabs'
+Plugin 'vim-scripts/iim.vim'
+Plugin 'vim-scripts/xml.vim'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
 
-Bundle 'gmarik/vundle'
-Bundle 'hashivim/vim-terraform'
-Bundle 'helino/vim-json'
-Bundle 'klen/python-mode'
-Bundle 'lambdalisue/nose.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-scriptease'
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/Gundo'
-Bundle 'vim-scripts/LargeFile'
-Bundle 'vim-scripts/TWiki-Syntax'
-Bundle 'vim-scripts/Tabular'
-Bundle 'vim-scripts/buftabs'
-Bundle 'vim-scripts/iim.vim'
-Bundle 'vim-scripts/xml.vim'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-notes'
-
-" The rest of the settings
-filetype plugin indent on               " Required after the Vundle stuff
+" Vundle wrap-up
+call vundle#begin()
+filetype plugin indent on
 
 " General editor settings
+set background=dark                     " Dark background on terminals
 set cursorline                          " Highlight the row with the cursor
 set diffopt=filler,iwhite               " Show all lines, ignore trailing spaces
 set expandtab                           " Differ from "sensible.vim" settings
@@ -205,7 +208,7 @@ au BufNewFile,BufRead *.jmx set filetype=xml
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 
-" Bundle settings
+" Plugin settings
 " ---------------
 
 " Gundo
