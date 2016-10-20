@@ -1,0 +1,12 @@
+[core]
+    autocrlf = true
+[credential]
+    helper = !'C:\\Users\\dgrover\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe'
+[difftool "bc3"]
+    cmd = !'C:\\Program Files (x86)\\Beyond Compare 3\\BCompare.exe'
+[diff]
+    tool = bc3
+[mergetool "bc3"]
+    cmd = !'C:\\Program Files (x86)\\Beyond Compare 3\\BCompare.exe'
+[merge]
+    tool = bc3

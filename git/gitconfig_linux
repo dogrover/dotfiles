@@ -1,0 +1,6 @@
+[include]
+    path = ~/dotfiles/git/gitconfig_common
+[core]
+    autocrlf = input
+[credential]
+    helper = store
