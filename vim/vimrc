@@ -3,7 +3,7 @@
 
 " After getting this file, bootstrap the vim configuration like this:
 "    - run dotfiles\dotfiles_setup
-"    - install the fonts at dotfiles\fonts into the OS
+"    - install the fonts at dotfiles\fonts
 "    - start vim and run :PluginInstall
 "    - exit vim and restart
 
@@ -22,7 +22,7 @@ if has('unix')
     set guifont=Consolas\ for\ Powerline\ 10
     set t_Co=256
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-    let s:vim_data_dir="$HOME/.vim/backup//,."
+    let s:vim_data_dir="$HOME/.vim/data"
 endif
 
 if isdirectory(expand(s:vim_data_dir))
@@ -81,7 +81,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 
 " Vundle wrap-up
-call vundle#begin()
+call vundle#end()
 filetype plugin indent on
 
 " General editor settings
