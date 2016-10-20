@@ -1,12 +1,18 @@
+[include]
+    path="C:/source/dogrover/dotfiles/git/gitconfig_common"
 [core]
     autocrlf = true
 [credential]
-    helper = !'C:\\Users\\dgrover\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe'
+    helper = manager
 [difftool "bc3"]
-    cmd = !'C:\\Program Files (x86)\\Beyond Compare 3\\BCompare.exe'
+    cmd = "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
 [diff]
     tool = bc3
+[http]
+    proxy = http://proxy-chain.intel.com:911
+[https]
+    proxy = https://proxy-chain.intel.com:912
 [mergetool "bc3"]
-    cmd = !'C:\\Program Files (x86)\\Beyond Compare 3\\BCompare.exe'
+    cmd = "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
 [merge]
     tool = bc3
