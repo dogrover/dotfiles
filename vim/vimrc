@@ -17,6 +17,7 @@ if has('win32') || has('win64')
     let g:guifont_size_match = ':h\zs\d\+\ze'
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
     let s:vim_data_dir = '$LOCALAPPDATA/Vim'
+    let g:browser_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
 endif
 
 if has('unix')
@@ -24,6 +25,7 @@ if has('unix')
     let g:guifont_size_match = ' \zs\d\+\ze$'
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
     let s:vim_data_dir="$HOME/VimBackup//,."
+    let g:browser_path = 'less'
 endif
 
 if isdirectory(expand(s:vim_data_dir))
