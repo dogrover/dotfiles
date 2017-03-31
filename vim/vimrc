@@ -116,6 +116,7 @@ inoremap jj <Esc>
 set guioptions=emr
 set selectmode=mouse,key
 set nocursorline
+syntax sync minlines=300                " Syntax highlighting lookback lines
 :color hybrid
 
 " Add Firefox-style buffer switching
@@ -210,6 +211,8 @@ nmap <silent> <leader>ev :edit $MYVIMRC<CR>
 nmap <silent> <leader>sv :source $MYVIMRC<CR>
 nmap <silent> <leader>eP :edit $HOME/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>
 nmap <leader>es :execute ":edit $VIMHOME/" . g:my_ultisnips_dir . "/" . &filetype . ".snippets"<CR>
+nmap <leader>ejh :execute ":edit $HOME/Dropbox/Docs/Journal/" . strftime("%Y-%m.mkd")<CR>
+nmap <leader>ejw :execute ":edit $HOME/Dropbox/Docs/Work/McAfee/SystemTeam/Journal/" . strftime("%Y-%m.mkd")<CR>
 
 " Bundle settings
 " ---------------
@@ -237,3 +240,4 @@ let g:airline#extensions#syntastic#enabled = 1
 " YouCompleteMe
 let g:ycm_server_keep_logfiles=1
 
+let g:pymode_rope = 0

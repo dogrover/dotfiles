@@ -1,0 +1,10 @@
+# Markdown snippets
+
+snippet img "Insert a reference to an image" !b
+![alt text]($1 "$2")
+
+endsnippet
+
+snippet ln "Create a link with the contents of the clipboard"
+[$1](`!v normal "+gp`)
+endsnippet
