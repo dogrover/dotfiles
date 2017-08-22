@@ -1,6 +1,8 @@
-Import-Module PsGet
+# TODO: Skip on Windows 10. Run on earlier versions
+# Import-Module PsGet
 Import-Module Find-String
-Import-Module VirtualEnvWrapper
+# Import-Module VirtualEnvWrapper
+Import-Module posh-docker
 
 Function Prompt {
     $realLASTEXITCODE = $LASTEXITCODE
@@ -28,18 +30,6 @@ If (Test-ElevationStatus) {
     (Get-Host).UI.RawUI.Backgroundcolor = 'DarkRed'
     Clear-Host
 }
-
-Function Start-PowerCLI {
-    Import-Module 'VMWare.VimAutomation.Core'
-    Connect-VIServer -Server beaengvc01.beaeng.mfeeng.org
-}
-New-Alias -Name 'spc' -Value 'Start-PowerCLI' -Description 'Add snap-in and connect to VSphere'
-
-# VirtualEnvWrapper
-# -----------------
-$ProjectHome = 'C:\source\dogrover'
-New-Alias -Name 'sve' -Value Set-VirtualEnvironment -Scope 'Global'
-New-Alias -Name 'nvep' -Value New-VirtualEnvProject -Scope 'Global'
 
 # Convenience functions for toggling Debug and Verbose preferences
 Function Switch-DebugPreference {
@@ -70,8 +60,4 @@ $settings.DebugForegroundColor = 'DarkYellow'
 $script:curr_user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
 $script:curr_host = [System.Net.Dns]::GetHostName()
 # $PString = "{Green:}$($curr_user)@{Yellow:}$($curr_host):{DarkYellow:}$(Get-Location)"
-
-
-# Load posh-git example profile
-# . 'C:\Users\groverda\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1'
 
