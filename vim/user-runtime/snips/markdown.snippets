@@ -6,5 +6,12 @@ snippet img "Insert a reference to an image" !b
 endsnippet
 
 snippet ln "Create a link with the contents of the clipboard"
-[$1](`!v normal "+gp`)
+[$1](`!v @+`)
+endsnippet
+
+snippet code "Drop the clipboard contents into a code fence"
+\`\`\`
+`!v @+`
+\`\`\`
+
 endsnippet
