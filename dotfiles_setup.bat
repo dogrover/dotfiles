@@ -23,7 +23,6 @@ IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_NoGit
 
 REM Check for target files
 IF NOT EXIST "%DOTFILES_DIR%\vim\vimrc" GOTO ERR_NoVimrc
-IF NOT EXIST "%DOTFILES_DIR%\pentadactyl\pentadactylrc" GOTO ERR_NoPentarc
 IF NOT EXIST "%DOTFILES_DIR%\powershell\powershell_profile.ps1" GOTO ERR_NoPowershellrc
 
 REM Check for elevated permissions on Vista and above
@@ -72,22 +71,9 @@ mkdir "%LOCALAPPDATA%\Vim\undo" >> "%LOG_FILE%" 2>&1
 IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingDir
 
 REM Add Vundle to the vim setup
-ECHO Cloning Vundle repo
-git clone https://github.com/VundleVim/Vundle.vim.git "%DOTFILES_DIR%/vim/bundle/vundle" >> "%LOG_FILE%" 2>&1
-IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_GettingVundle
-
-:SetupPentadactyl
-REM Setup Pentadactyl
-REM -----------------
-
-REM Create file links
-ECHO Link .pentadactylrc to dotfiles\pentadactyl\pentadactylrc
-mklink /H "%USERPROFILE%\.pentadactylrc" "%DOTFILES_DIR%\pentadactyl\pentadactylrc" >> "%LOG_FILE%" 2>&1
-IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
-
-ECHO Link pentadactyl to dotfiles\pentadactyl
-mklink /J "%USERPROFILE%\pentadactyl" "%DOTFILES_DIR%\pentadactyl" >> "%LOG_FILE%" 2>&1
-IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_CreatingLink
+REM ECHO Cloning Vundle repo
+REM git clone https://github.com/VundleVim/Vundle.vim.git "%DOTFILES_DIR%/vim/bundle/vundle" >> "%LOG_FILE%" 2>&1
+REM IF NOT "%ERRORLEVEL%" == "0" GOTO ERR_GettingVundle
 
 :SetupPowerShell
 REM Setup PowerShell
@@ -120,11 +106,7 @@ GOTO Done
 ECHO ERROR: "%DOTFILES_DIR%\vim\vimrc" not found. Project in unknown state. Cannot continue.
 GOTO Done
 
-:ERR_NoPentarc
-ECHO ERROR: "%DOTFILES_DIR%\pentadactyl\pentadactylrc" not found. Project in unknown state. Cannot continue.
-GOTO Done
-
-:ERR_NoPentarc
+:ERR_NoPSProfile
 ECHO ERROR: "%DOTFILES_DIR%\powershell\powershell_profile.ps1" not found. Project in unknown state. Cannot continue.
 GOTO Done
 
