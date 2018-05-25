@@ -13,11 +13,11 @@ filetype off                   " Required for Vundle
 " OS-specific settings. Keep actual changes to a minimum. Set variables
 " instead, and use them later.
 if has('win32') || has('win64')
-    set guifont=Inconsolata-g_for_Powerline:h9:cANSI:qDRAFT
+    set guifont=Fira_Code:h9:cANSI:qDRAFT
     let g:guifont_size_match = ':h\zs\d\+\ze'
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
     let s:vim_data_dir = '$LOCALAPPDATA/Vim'
-    let g:browser_path = 'C:\opt\PortableApps\GoogleChromePortable\App\Chrome-bin\chrome.exe'
+    let g:browser_path = 'C:\opt\PortableApps\GoogleChromePortable\GoogleChromePortable.exe'
 endif
 
 if has('unix')
@@ -51,18 +51,14 @@ call vundle#rc()
 
 " Bundles go here
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'PProvost/vim-ps1'
 Bundle 'SirVer/ultisnips'
 Bundle 'Valloric/MatchTagAlways'
 Bundle 'alfredodeza/pytest.vim'
 Bundle 'gmarik/vundle'
-Bundle 'hashivim/vim-terraform'
-Bundle 'helino/vim-json'
 Bundle 'klen/python-mode'
-Bundle 'pangloss/vim-javascript'
-Bundle 'plasticboy/vim-markdown'
 Bundle 'runsisi/consolas-font-for-powerline'
 Bundle 'scrooloose/syntastic'
+Bundle 'sheerun/vim-polyglot'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-scriptease'
@@ -72,7 +68,6 @@ Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'vim-scripts/Gundo'
 Bundle 'vim-scripts/LargeFile'
-Bundle 'vim-scripts/TWiki-Syntax'
 Bundle 'vim-scripts/Tabular'
 Bundle 'vim-scripts/buftabs'
 Bundle 'vim-scripts/iim.vim'
